@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Agente de Homologação SalesDesk — Relatório da POC · Dalton Lab para Neogrid</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Newsreader:ital,opsz@0,6..72;1,6..72&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    /* base — off-white quente / tinta quase-preta quente (padrão Dalton) */
+    --bg: #f7f5f1;
+    --paper: #fffefb;
+    --surface: #ffffff;
+    --border: #e7e2d8;
+    --border-strong: #d8d1c3;
+    --ink: #1a1714;
+    --ink-soft: #5a5347;
+    --ink-faint: #8a8170;
+    --gray-bg: #f0ece3;
+
+    /* acento institucional — verde-petróleo profundo + âmbar */
+    --accent: #0f5c52;
+    --accent-soft: #d7e8e3;
+    --accent-deep: #0a3f38;
+    --amber: #b06a12;
+    --amber-soft: #f6e8d2;
+
+    /* estados (par cor-forte + pastel) */
+    --green: #1f8a4c;  --green-bg: #dcefe0;  --green-ink: #166537;
+    --amberx:#b07d12;  --amber-bg: #f6ecd4;  --amber-tx: #875c08;
+    --red:   #b8412f;  --red-bg:   #f6e1dc;  --red-tx:   #8f3023;
+    --info:  #2c5fa8;  --info-bg:  #dde7f5;  --info-tx:  #1f4683;
+
+    --r-lg: 16px; --r-md: 11px; --r-sm: 7px; --r-pill: 999px;
+    --shadow: 0 1px 2px rgba(40,30,15,0.05), 0 8px 24px rgba(40,30,15,0.05);
+    --shadow-sharp: 0 1px 0 var(--border-strong);
+    --maxw: 1080px;
+    --read: 760px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    color: var(--ink);
+    background: var(--bg);
+    line-height: 1.62;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    /* textura sutil de papel */
+    background-image:
+      radial-gradient(circle at 18% 12%, rgba(15,92,82,0.025), transparent 38%),
+      radial-gradient(circle at 92% 80%, rgba(176,106,18,0.03), transparent 42%);
+  }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 28px; }
+  .read { max-width: var(--read); }
+
+  /* ---------- tipografia ---------- */
+  h1, h2, h3 { font-family: "Fraunces", "Newsreader", Georgia, serif; font-weight: 600; letter-spacing: -0.015em; }
+  .serif { font-family: "Newsreader", Georgia, serif; }
+  .mono { font-family: "IBM Plex Mono", monospace; font-variant-numeric: tabular-nums; }
+  code {
+    font-family: "IBM Plex Mono", monospace; font-size: 0.86em;
+    background: var(--gray-bg); padding: 1.5px 6px; border-radius: var(--r-sm);
+    color: var(--accent-deep); border: 1px solid var(--border);
+  }
+
+  /* ---------- hero ---------- */
+  header.hero {
+    position: relative; overflow: hidden;
+    background:
+      radial-gradient(140% 120% at 85% -10%, #15463f 0%, transparent 55%),
+      linear-gradient(150deg, #0a2e29 0%, #0f3d36 48%, #103c34 100%);
+    color: #f4efe6;
+    padding: 92px 0 84px;
+    border-bottom: 1px solid #0a2722;
+  }
+  header.hero::before {
+    content: ""; position: absolute; inset: 0;
+    background-image: repeating-linear-gradient(90deg, rgba(255,255,255,0.018) 0 1px, transparent 1px 64px);
+    pointer-events: none;
+  }
+  header.hero .wrap { position: relative; display: flex; flex-direction: column; gap: 22px; }
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 9px; width: fit-content;
+    background: rgba(255,255,255,0.07); border: 1px solid rgba(231,226,216,0.22);
+    padding: 6px 15px; border-radius: var(--r-pill);
+    font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #cfe4de;
+    font-weight: 500;
+  }
+  .eyebrow .dot { width: 6px; height: 6px; border-radius: 50%; background: #5fd0a8; box-shadow: 0 0 0 3px rgba(95,208,168,0.2); }
+  header.hero h1 { font-size: clamp(33px, 5vw, 52px); line-height: 1.04; font-weight: 600; max-width: 16ch; }
+  header.hero h1 em { font-style: italic; color: #79d6b3; font-weight: 500; }
+  header.hero .sub { font-size: clamp(16px, 2vw, 19px); color: #cbded7; max-width: 58ch; line-height: 1.55; }
+  .meta-row { display: flex; flex-wrap: wrap; gap: 0; margin-top: 8px; border-top: 1px solid rgba(231,226,216,0.16); padding-top: 20px; }
+  .meta-row .m { padding-right: 34px; margin-right: 34px; border-right: 1px solid rgba(231,226,216,0.14); }
+  .meta-row .m:last-child { border-right: none; }
+  .meta-row .mk { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #84b3a9; }
+  .meta-row .mv { font-size: 15px; color: #eef3ee; font-weight: 500; margin-top: 2px; }
+
+  /* ---------- seções ---------- */
+  section { padding: 72px 0; border-bottom: 1px solid var(--border); }
+  section.alt { background: var(--paper); }
+  section:last-of-type { border-bottom: none; }
+  .kicker { font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; display: flex; align-items: center; gap: 10px; }
+  .kicker::before { content: ""; width: 26px; height: 2px; background: var(--accent); display: inline-block; }
+  h2 { font-size: clamp(26px, 3.4vw, 36px); line-height: 1.1; margin-bottom: 14px; }
+  h2 .q { color: var(--ink-faint); font-weight: 400; font-style: italic; }
+  .lead { font-family: "Newsreader", Georgia, serif; font-size: clamp(18px, 2.2vw, 22px); color: var(--ink-soft); line-height: 1.5; max-width: var(--read); margin-bottom: 26px; }
+  p { margin-bottom: 15px; max-width: var(--read); color: var(--ink-soft); }
+  p strong, strong.d { color: var(--ink); font-weight: 600; }
+  p.big { font-size: 17px; color: var(--ink); }
+
+  /* ---------- KPI cards ---------- */
+  .kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 16px; margin: 8px 0 4px; }
+  .kpi { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-md); padding: 22px 22px 20px; box-shadow: var(--shadow); position: relative; }
+  .kpi .num { font-family: "Fraunces", serif; font-size: 40px; font-weight: 600; line-height: 1; letter-spacing: -0.02em; color: var(--accent); font-variant-numeric: tabular-nums; }
+  .kpi .num.amber { color: var(--amber); }
+  .kpi .num.ink { color: var(--ink); }
+  .kpi .lbl { font-size: 13.5px; color: var(--ink-soft); margin-top: 9px; line-height: 1.4; }
+  .kpi .sub { font-size: 12px; color: var(--ink-faint); margin-top: 6px; }
+
+  /* ---------- barra de cobertura (motivo visual) ---------- */
+  .cover-hero { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-lg); padding: 36px 34px; box-shadow: var(--shadow); margin-bottom: 26px; }
+  .cover-hero .top { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 12px; margin-bottom: 6px; }
+  .cover-hero .pct { font-family: "Fraunces", serif; font-size: clamp(48px, 8vw, 76px); font-weight: 600; line-height: 0.9; letter-spacing: -0.03em; color: var(--accent); }
+  .cover-hero .pct small { font-size: 0.42em; color: var(--ink-faint); font-weight: 500; letter-spacing: 0; }
+  .cover-hero .frac { font-family: "IBM Plex Mono", monospace; font-size: 15px; color: var(--ink-soft); text-align: right; }
+  .cover-hero .frac b { color: var(--ink); }
+  .bar { height: 16px; background: var(--gray-bg); border-radius: var(--r-pill); overflow: hidden; margin: 22px 0 10px; border: 1px solid var(--border); display: flex; }
+  .bar .fill { height: 100%; background: linear-gradient(90deg, var(--accent-deep), var(--accent)); border-radius: var(--r-pill) 0 0 var(--r-pill); position: relative; }
+  .bar .ghost { height: 100%; background: repeating-linear-gradient(45deg, var(--amber-soft) 0 6px, #f1e6cf 6px 12px); }
+  .barlegend { display: flex; gap: 22px; font-size: 13px; color: var(--ink-soft); flex-wrap: wrap; }
+  .barlegend .sw { display: inline-block; width: 12px; height: 12px; border-radius: 3px; margin-right: 7px; vertical-align: -1px; }
+  .barlegend .sw.now { background: var(--accent); }
+  .barlegend .sw.proj { background: repeating-linear-gradient(45deg, var(--amber-soft) 0 4px, #e9d8b8 4px 8px); border: 1px solid var(--border-strong); }
+  .barlegend .sw.hum { background: var(--gray-bg); border: 1px solid var(--border-strong); }
+
+  /* ---------- funil do universo ---------- */
+  .funnel { display: grid; gap: 12px; margin: 8px 0 6px; }
+  .funnel .step { display: flex; align-items: center; gap: 18px; }
+  .funnel .lbl { flex: none; width: 230px; font-size: 14px; color: var(--ink-soft); }
+  .funnel .track { flex: 1; height: 38px; background: var(--gray-bg); border-radius: var(--r-sm); overflow: hidden; border: 1px solid var(--border); position: relative; }
+  .funnel .seg { height: 100%; display: flex; align-items: center; padding-left: 14px; color: #fff; font-weight: 600; font-size: 14px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .funnel .seg.full { background: linear-gradient(90deg, #0a3f38, #15463f); }
+  .funnel .seg.valid { background: linear-gradient(90deg, var(--accent), #17776a); }
+  .funnel .note { font-size: 13px; color: var(--ink-faint); margin-top: 2px; }
+
+  /* ---------- steps numerados ---------- */
+  .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; }
+  .step-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-md); padding: 26px 24px; }
+  .step-num { width: 36px; height: 36px; border-radius: 10px; background: var(--accent); color: #fff; font-family: "Fraunces", serif; font-weight: 600; font-size: 17px; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; }
+  .step-card h3 { font-size: 18px; margin-bottom: 8px; color: var(--ink); }
+  .step-card p { font-size: 14.5px; margin: 0; }
+
+  /* ---------- tabela de projeção (escada) ---------- */
+  .table-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: var(--r-md); background: var(--surface); margin-top: 6px; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  thead th { background: var(--gray-bg); text-align: left; padding: 13px 16px; font-size: 11.5px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: var(--ink-soft); border-bottom: 1px solid var(--border-strong); white-space: nowrap; }
+  tbody td { padding: 12px 16px; border-bottom: 1px solid var(--border); color: var(--ink-soft); vertical-align: middle; }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr.baseline td { background: var(--accent-soft); }
+  tbody tr:hover td { background: #faf8f3; }
+  td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; font-family: "IBM Plex Mono", monospace; }
+  td.acc { color: var(--ink); font-weight: 600; }
+  .minibar { display: inline-block; height: 8px; border-radius: var(--r-pill); background: linear-gradient(90deg, var(--accent-deep), var(--accent)); vertical-align: middle; margin-right: 9px; }
+  .pill-tag { display: inline-block; font-size: 11px; font-weight: 600; padding: 2px 9px; border-radius: var(--r-pill); white-space: nowrap; }
+  .pill-tag.now { background: var(--green-bg); color: var(--green-ink); }
+  .pill-tag.gilson { background: var(--amber-bg); color: var(--amber-tx); }
+  .pill-tag.integ { background: var(--info-bg); color: var(--info-tx); }
+
+  /* ---------- cenários time-saved ---------- */
+  .scenarios { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 18px; }
+  .scn { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-md); padding: 26px 24px; position: relative; overflow: hidden; }
+  .scn.feature { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent), var(--shadow); }
+  .scn .tag { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 14px; }
+  .scn.feature .tag { color: var(--accent); }
+  .scn .hh { font-family: "Fraunces", serif; font-size: 34px; font-weight: 600; color: var(--ink); line-height: 1; letter-spacing: -0.02em; }
+  .scn .hh small { font-size: 0.46em; color: var(--ink-faint); font-weight: 500; }
+  .scn .hh.acc { color: var(--accent); }
+  .scn .desc { font-size: 14px; color: var(--ink-soft); margin-top: 14px; line-height: 1.5; }
+  .scn .metric { margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--border); font-size: 13px; color: var(--ink-faint); }
+  .scn .metric b { color: var(--ink); font-variant-numeric: tabular-nums; }
+
+  /* ---------- exemplos ---------- */
+  .examples { display: grid; gap: 16px; }
+  .ex { background: var(--surface); border: 1px solid var(--border); border-left: 4px solid var(--border-strong); border-radius: var(--r-sm); padding: 20px 24px; }
+  .ex.ok { border-left-color: var(--green); }
+  .ex.no { border-left-color: var(--red); }
+  .ex.rev { border-left-color: var(--amberx); }
+  .ex .badge { display: inline-block; font-size: 11.5px; font-weight: 600; padding: 3px 11px; border-radius: var(--r-pill); margin-bottom: 9px; text-transform: uppercase; letter-spacing: 0.04em; }
+  .ex.ok .badge { background: var(--green-bg); color: var(--green-ink); }
+  .ex.no .badge { background: var(--red-bg); color: var(--red-tx); }
+  .ex.rev .badge { background: var(--amber-bg); color: var(--amber-tx); }
+  .ex p { font-size: 14.5px; margin: 0; }
+
+  /* ---------- limitações ---------- */
+  .lims { display: grid; gap: 14px; }
+  .lim { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-sm); padding: 18px 22px; display: flex; gap: 16px; align-items: flex-start; }
+  .lim .ic { flex: none; font-size: 19px; line-height: 1.4; }
+  .lim .t { font-weight: 600; color: var(--ink); display: block; margin-bottom: 3px; }
+  .lim p { font-size: 14.5px; margin: 0; }
+  .callout { background: var(--accent-soft); border: 1px solid #b9d6cf; border-radius: var(--r-md); padding: 20px 24px; margin-top: 24px; color: var(--accent-deep); max-width: var(--read); }
+  .callout strong { color: var(--accent-deep); }
+
+  /* ---------- access list ---------- */
+  .acc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap: 14px; }
+  .acc-item { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-sm); padding: 18px 20px; }
+  .acc-item .h { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; margin-bottom: 6px; }
+  .acc-item .n { font-weight: 600; color: var(--ink); font-size: 15px; }
+  .acc-item .plus { font-family: "IBM Plex Mono", monospace; font-weight: 500; color: var(--accent); font-size: 14px; white-space: nowrap; }
+  .acc-item p { font-size: 13px; margin: 0; color: var(--ink-faint); }
+
+  /* ---------- CTA ---------- */
+  .cta { background: linear-gradient(150deg, #0a2e29 0%, #103c34 100%); color: #f4efe6; border-radius: var(--r-lg); padding: 48px 40px; text-align: center; position: relative; overflow: hidden; }
+  .cta::before { content: ""; position: absolute; inset: 0; background: radial-gradient(120% 100% at 50% -20%, rgba(95,208,168,0.12), transparent 60%); }
+  .cta > * { position: relative; }
+  .cta h2 { color: #fff; }
+  .cta p { color: #c4ddd5; max-width: 52ch; margin: 12px auto 0; }
+  .cta a.btn { display: inline-flex; align-items: center; gap: 9px; margin-top: 24px; background: #f4efe6; color: #0a2e29; font-weight: 600; text-decoration: none; padding: 14px 30px; border-radius: var(--r-md); font-size: 15px; transition: transform 0.15s ease; }
+  .cta a.btn:hover { transform: translateY(-2px); }
+  .cta small { display: block; margin-top: 18px; color: #8fbcb2; font-size: 13px; }
+
+  footer { background: var(--ink); color: #b8b0a2; padding: 40px 0; font-size: 13px; }
+  footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; align-items: center; }
+  footer strong { color: #ece6da; }
+  footer a { color: #d9d0c0; text-decoration: none; border-bottom: 1px solid rgba(217,208,192,0.3); }
+
+  .onepager-note { font-size: 13px; color: var(--ink-faint); font-style: italic; margin-top: 4px; }
+
+  @media (max-width: 640px) {
+    section { padding: 48px 0; }
+    .meta-row .m { padding-right: 18px; margin-right: 18px; }
+    .funnel .lbl { width: 130px; font-size: 13px; }
+    .cover-hero { padding: 26px 22px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO OCULTO (reativar removendo este comentário e o fechamento abaixo)
+<header class="hero">
+  <div class="wrap">
+    <span class="eyebrow"><span class="dot"></span> Relatório da Prova de Conceito · Dalton Lab × Neogrid</span>
+    <h1>O cross-check de homologação, feito por um agente — <em>auditável, em segundos</em>.</h1>
+    <p class="sub">
+      Toda oportunidade ganha passa por uma cadeia de conferências antes de virar contrato.
+      Hoje isso recai, item por item, sobre uma única analista. Este relatório mostra o que
+      um agente conseguiu assumir desse trabalho — com cada decisão rastreável até o campo de origem.
+    </p>
+    <div class="meta-row">
+      <div class="m"><div class="mk">Cliente</div><div class="mv">Neogrid</div></div>
+      <div class="m"><div class="mk">Executor</div><div class="mv">Dalton Lab</div></div>
+      <div class="m"><div class="mk">Escopo</div><div class="mv">Pós-venda (oportunidade ganha)</div></div>
+      <div class="m"><div class="mk">Base</div><div class="mv">302 opps reais · CRM homolog</div></div>
+    </div>
+  </div>
+</header>
+-->
+
+<!-- CONTEXTO + OBJETIVO -->
+<section>
+  <div class="wrap read">
+    <div class="kicker">Contexto &amp; objetivo</div>
+    <h2>Não é falta de processo. <span class="q">É volume sobre uma pessoa só.</span></h2>
+    <p class="lead">
+      A homologação de uma venda ganha é uma cadeia de seis elos — porte da conta, solução,
+      lista de preço, itens, proposta e contrato no ERP. Cada elo depende do anterior, e cada
+      um esconde dezenas de conferências manuais.
+    </p>
+    <p class="big">
+      O backlog do SalesDesk mostra o tamanho do gargalo: demanda de <strong class="d">~484 chamados/mês</strong>
+      contra uma capacidade individual de <strong class="d">~144/mês</strong> — um déficit de +340 por mês,
+      com chamados parados há, em média, <strong class="d">709 dias</strong>. O problema não é a dificuldade
+      de cada conferência; é a repetição, sob pressão de prazo, sobre uma única analista.
+    </p>
+    <p>
+      <strong>O objetivo desta POC</strong> não é provar que a IA "faz tudo". É demonstrar, sobre dados reais
+      do ambiente de homologação, que existe um caminho prático e <strong>auditável</strong> para o agente
+      assumir a parte repetitiva do cross-check — deixando para o humano só o que é, de fato, ambíguo.
+      O agente roda os <strong>39 checks do playbook</strong> em cada oportunidade e devolve um veredito —
+      <em>aprovado, reprovado, devolvido</em> ou <em>revisão humana</em> — sempre com o campo e o valor que
+      sustentaram a decisão. Nada inferido sem evidência: se o dado não existe, o agente diz "sem cobertura", não inventa.
+    </p>
+  </div>
+</section>
+
+<!-- ABORDAGEM -->
+<section class="alt">
+  <div class="wrap">
+    <div class="kicker">Como abordamos</div>
+    <h2>Script onde dá para ser determinístico. IA só onde é preciso ler.</h2>
+    <div class="steps">
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <h3>Leitura determinística do CRM</h3>
+        <p>A maior parte dos checks é conferência direta de campo — itens, lista de preço, contatos,
+        condição de pagamento. Script puro, somente leitura, comparado com a regra do playbook.
+        É o núcleo confiável: hoje resolve <strong class="d">65%</strong> dos checks que toca.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <h3>Leitura da proposta com IA, cirúrgica</h3>
+        <p>Cerca de dez checks dependem de ler o PDF da proposta — valores, condições, índice de reajuste,
+        dados de faturamento. Só aí entra a IA: baixa o PDF anexado e extrai o que a regra pede.
+        Concentrada num único ponto, não espalhada pelo sistema.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">3</div>
+        <h3>Veredito com evidência e cadeia de elos</h3>
+        <p>O agente combina tudo, aponta o primeiro elo que quebrou e dá o veredito com o motivo.
+        O humano revisa só os casos marcados como ambíguos — vira gestor de exceção, não conferente
+        de linha de produção.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESULTADOS -->
+<section>
+  <div class="wrap">
+    <div class="kicker">Resultados</div>
+    <h2>O que o agente conseguiu, sobre 302 oportunidades reais.</h2>
+
+    <!-- funil do universo -->
+    <p class="lead">Primeiro, a base. O ambiente de homologação tinha muito ruído de teste — limpamos antes de medir.</p>
+    <div class="funnel">
+      <div class="step">
+        <div class="lbl">Oportunidades "ganhas" no CRM</div>
+        <div class="track"><div class="seg full" style="width:100%">1.400</div></div>
+      </div>
+      <div class="step">
+        <div class="lbl">Válidas (sem lixo de teste/QA)</div>
+        <div class="track"><div class="seg valid" style="width:21.6%">302</div></div>
+      </div>
+    </div>
+    <p class="note" style="color:var(--ink-faint);font-size:13px;margin-bottom:34px;">
+      ~79% das "ganhas" eram registros de teste ("TESTE 01", "wddsd", "A"). Filtramos por heurística antes de
+      processar — as 302 válidas foram todas analisadas pela POC.
+    </p>
+
+    <!-- barra de cobertura -->
+    <div class="cover-hero">
+      <div class="top">
+        <div>
+          <div class="pct">46<small>%</small></div>
+          <div style="color:var(--ink-soft);font-size:15px;margin-top:4px;">dos checks verificáveis <strong class="d">decididos automaticamente</strong></div>
+        </div>
+        <div class="frac">
+          <b>3.761</b> decididos<br>
+          de <b>8.258</b> verificáveis<br>
+          <span style="color:var(--ink-faint);font-size:13px;">(exclui o que vai a revisão humana)</span>
+        </div>
+      </div>
+      <div class="bar">
+        <div class="fill" style="width:46%"></div>
+        <div class="ghost" style="width:43%"></div>
+      </div>
+      <div class="barlegend">
+        <span><span class="sw now"></span> Decidido pela POC hoje · 46%</span>
+        <span><span class="sw proj"></span> Destravável com acesso/saneamento</span>
+        <span><span class="sw hum"></span> Resíduo humano irredutível</span>
+      </div>
+    </div>
+
+    <div class="kpis">
+      <div class="kpi"><div class="num">302</div><div class="lbl">oportunidades processadas</div><div class="sub">ao vivo no CRM homolog</div></div>
+      <div class="kpi"><div class="num ink">~seg</div><div class="lbl">por oportunidade triada</div><div class="sub">vs. ~12 min manuais</div></div>
+      <div class="kpi"><div class="num amber">26</div><div class="lbl">dos 39 checks são lidos do CRM</div><div class="sub">16 por script · 10 por IA</div></div>
+      <div class="kpi"><div class="num ink">100%</div><div class="lbl">das decisões com evidência</div><div class="sub">campo + valor de origem</div></div>
+    </div>
+
+    <p style="margin-top:24px">
+      O indicador que importa não é "quantos a IA aprovou" — vereditos hoje são
+      <strong class="d">160 devolvidos · 139 reprovados · 3 aprovados</strong>, esperado num ambiente onde o dado
+      ainda está incompleto. O que importa é <strong>quanto do trabalho repetitivo sai da mesa da analista</strong>,
+      com cada decisão auditável.
+    </p>
+  </div>
+</section>
+
+<!-- COBERTURA: o que destrava com acesso -->
+<section class="alt">
+  <div class="wrap">
+    <div class="kicker">O que aumenta a cobertura</div>
+    <h2>Onde os outros 54% estão presos — e o que os destrava.</h2>
+    <p class="lead">
+      O agente não está "errando" os 54% restantes. Ele está sendo honesto: ou o dado-fonte não existe no CRM,
+      ou ele vive num sistema fora do alcance da POC. Cada acesso liberado destrava um bloco de checks.
+    </p>
+
+    <div class="acc-grid">
+      <div class="acc-item">
+        <div class="h"><span class="n">PDF da proposta anexado</span><span class="plus">+2.894</span></div>
+        <p>Hoje só 19 das 302 opps têm o PDF no CRM; o resto vive no SharePoint. Destrava o bloco documental inteiro (checks 22–33). <strong>A dúvida #1 a fechar.</strong></p>
+      </div>
+      <div class="acc-item">
+        <div class="h"><span class="n">Saneamento de campos no CRM</span><span class="plus">+1.081</span></div>
+        <p>Preencher porte, solução, backoffice, canal — campos hoje vazios. Sem integração nova: é decisão de processo (checks 5, 6, 8, 16, 19, 21).</p>
+      </div>
+      <div class="acc-item">
+        <div class="h"><span class="n">E-mail / HubSpot</span><span class="plus">+891</span></div>
+        <p>Aceite de up-sell, classificação e tipo da venda (checks 1, 3, 9).</p>
+      </div>
+      <div class="acc-item">
+        <div class="h"><span class="n">ERP TOTVS</span><span class="plus">+665</span></div>
+        <p>Contrato vencido, ID de contrato, integração (checks 4, 28, 35).</p>
+      </div>
+      <div class="acc-item">
+        <div class="h"><span class="n">Sense Data · FE · TOTVS código</span><span class="plus">+891</span></div>
+        <p>Hub DAR/DAD, ferramenta de entrega e código TOTVS (checks 12, 17, 36).</p>
+      </div>
+      <div class="acc-item">
+        <div class="h"><span class="n">Atividades &amp; processos</span><span class="plus">+1.159</span></div>
+        <p>Atividade de homologação e exceções da Financeira (checks 27, 29, 37, 39).</p>
+      </div>
+    </div>
+
+    <div class="callout">
+      <strong>Os dois primeiros são os que importam para a POC.</strong> Saneamento de campos + PDF da proposta
+      não dependem de integração nova — dependem de uma decisão de processo. Sozinhos, levam a cobertura de
+      <strong>46% para 74%</strong>. O PDF é o maior salto isolado: o bloco documental está travado por falta de
+      anexo, não por incapacidade da IA.
+    </div>
+  </div>
+</section>
+
+<!-- PROJEÇÃO -->
+<section>
+  <div class="wrap">
+    <div class="kicker">Projeção</div>
+    <h2>A escada: cobertura à medida que os acessos se abrem.</h2>
+    <p class="lead">
+      Partindo dos 46% medidos hoje e somando acesso por acesso. A aritmética é conservadora —
+      "destravar um check" não é o mesmo que "decidi-lo", então aplicamos um fator de decisão realista
+      por degrau. O denominador também cresce conforme um check sai da revisão.
+    </p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Degrau (acesso liberado)</th>
+            <th class="num">Destrava</th>
+            <th class="num">Decididos</th>
+            <th class="num">Verificáveis</th>
+            <th>Cobertura acumulada</th>
+            <th>Factibilidade</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="baseline">
+            <td class="acc">Hoje — POC read-only</td>
+            <td class="num">—</td><td class="num">3.761</td><td class="num">8.258</td>
+            <td><span class="minibar" style="width:55px"></span><strong>46%</strong></td>
+            <td><span class="pill-tag now">no ar</span></td>
+          </tr>
+          <tr>
+            <td>+ Saneamento de campos no CRM</td>
+            <td class="num">1.081</td><td class="num">4.680</td><td class="num">8.360</td>
+            <td><span class="minibar" style="width:67px"></span><strong>56%</strong></td>
+            <td><span class="pill-tag gilson">decisão Gilson</span></td>
+          </tr>
+          <tr>
+            <td>+ PDF da proposta anexado</td>
+            <td class="num">2.894</td><td class="num">6.706</td><td class="num">9.046</td>
+            <td><span class="minibar" style="width:89px"></span><strong>74%</strong></td>
+            <td><span class="pill-tag gilson">decisão Gilson</span></td>
+          </tr>
+          <tr>
+            <td>+ E-mail / HubSpot</td>
+            <td class="num">891</td><td class="num">7.374</td><td class="num">9.398</td>
+            <td><span class="minibar" style="width:94px"></span><strong>78%</strong></td>
+            <td><span class="pill-tag integ">integração</span></td>
+          </tr>
+          <tr>
+            <td>+ ERP TOTVS</td>
+            <td class="num">665</td><td class="num">8.396</td><td class="num">9.936</td>
+            <td><span class="minibar" style="width:101px"></span><strong>85%</strong></td>
+            <td><span class="pill-tag integ">integração</span></td>
+          </tr>
+          <tr>
+            <td>+ Demais sistemas (Sense Data, FE, TOTVS, atividades)</td>
+            <td class="num">1.159</td><td class="num">9.352</td><td class="num">10.508</td>
+            <td><span class="minibar" style="width:106px"></span><strong>89%</strong></td>
+            <td><span class="pill-tag integ">integração</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="onepager-note">
+      Teto realista: com todos os acessos + saneamento, a POC decidiria <strong>~89%</strong> dos checks verificáveis.
+      Os ~11% restantes são genuinamente humanos (julgamento de conformidade, exceções comerciais, GN1/GN2) —
+      não elimináveis por acesso, por desenho. Os fatores de decisão por degrau são premissas conservadoras, a validar.
+    </p>
+  </div>
+</section>
+
+<!-- TIME SAVED -->
+<section class="alt">
+  <div class="wrap">
+    <div class="kicker">Tempo poupado</div>
+    <h2>De conferente de linha a gestora de exceção.</h2>
+    <p class="lead">
+      O ganho não é "100% automático". É que a analista deixa de partir do zero: o agente entrega a opp já
+      triada, com o elo que quebrou e a evidência ao lado. Ela confirma — não investiga.
+    </p>
+
+    <div class="scenarios">
+      <div class="scn">
+        <div class="tag">Hoje · POC read-only</div>
+        <div class="hh acc">~55<small>%</small></div>
+        <div class="desc">do tempo de cross-check por oportunidade poupado. O humano revisa só o que sobra dos 46% decididos, em vez de conferir 39 itens do zero.</div>
+        <div class="metric">≈ <b>5,5 min</b> poupados/opp · <b>~44 h/mês</b> no volume atual</div>
+      </div>
+      <div class="scn feature">
+        <div class="tag">+ Acessos externos · ~89% cobertura</div>
+        <div class="hh acc">~88<small>%</small></div>
+        <div class="desc">com PDF, saneamento e integrações, o humano revisa só os ~11% genuinamente ambíguos. O cross-check vira uma confirmação rápida.</div>
+        <div class="metric">≈ <b>10,5 min</b> poupados/opp · <b>~85 h/mês</b></div>
+      </div>
+      <div class="scn">
+        <div class="tag">+ Permissão de escrita</div>
+        <div class="hh">muda a natureza</div>
+        <div class="desc">o agente deixa de só apontar e passa a <strong>resolver</strong>: saneia o campo faltante, devolve ao vendedor com o motivo, conclui a atividade. ~1/3 das opps nem chega à fila humana.</div>
+        <div class="metric">≈ <b>90 h/mês</b> · &gt; meio FTE recuperado</div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <strong>O salto da permissão de escrita não é de % — é de natureza.</strong> Hoje a POC é 100% somente-leitura:
+      ela <em>classifica</em>, o humano <em>age</em>. Com escrita, das 302 opps, o agente resolveria sozinho as 3 aprovadas
+      e ~104 das 160 devoluções que travam por campo derivável (porte via política de porte, solução, backoffice) —
+      cerca de <strong>35% das opps deixariam de tocar a fila humana</strong>. As reprovações por regra de negócio
+      seguem para o humano, mas já com a devolução redigida.
+    </div>
+    <p class="onepager-note">Premissas: ~12 min de cross-check manual por opp e ~484 opps/mês — estimativas a validar com a Schaiane. Os fatores de resolução com escrita são conservadores; recomenda-se medir a causa-raiz das 160 devoluções antes de cravar o 35%.</p>
+  </div>
+</section>
+
+<!-- EXEMPLOS -->
+<section>
+  <div class="wrap read">
+    <div class="kicker">Como o agente decide</div>
+    <h2>Três casos concretos, com a evidência ao lado.</h2>
+    <div class="examples">
+      <div class="ex ok">
+        <span class="badge">Aprovado</span>
+        <p>Oportunidade ganha com itens preenchidos, lista de preço coerente e contrato no ERP já presente
+        (<code>ngd_contractid = E002-…</code>). Os elos fecham. O agente aprova e mostra cada campo que sustentou a decisão.</p>
+      </div>
+      <div class="ex no">
+        <span class="badge">Reprovado</span>
+        <p>Oportunidade marcada como ganha, mas <strong class="d">sem nenhum item</strong> (<code>opportunityproduct</code> vazio).
+        O elo 4 quebra: não há o que homologar. O agente reprova apontando o elo exato em que a cadeia parou.</p>
+      </div>
+      <div class="ex rev">
+        <span class="badge">Revisão humana</span>
+        <p>Proposta em PDF anexada, mas a assinatura não é detectável no texto extraído (aceite via DocuSign vive na
+        camada digital). O agente não chuta: marca <strong class="d">revisão humana</strong> com o motivo, e a analista decide só esse caso.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LIMITAÇÕES -->
+<section class="alt">
+  <div class="wrap">
+    <div class="kicker">Honestidade</div>
+    <h2>O que esta POC <span class="q">não</span> resolve.</h2>
+    <p class="lead">O agente só checa o que o CRM realmente tem. E falta dado. Nomear os limites é parte da entrega.</p>
+    <div class="lims">
+      <div class="lim">
+        <span class="ic">⚠️</span>
+        <div><span class="t">A proposta raramente está anexada</span>
+        <p>Só 19 das 302 opps têm o PDF no CRM (≈4,6% no universo total). Os ~10 checks documentais só funcionam onde o PDF existe. Definir "o que conta como proposta enviada" é o que mais governa o tamanho da POC.</p></div>
+      </div>
+      <div class="lim">
+        <span class="ic">⚠️</span>
+        <div><span class="t">O porte da conta está quase sempre vazio</span>
+        <p><code>ngd_size</code> preenchido em só ~15% das contas ganhas. É o elo mais frágil da cadeia, sem fonte alternativa preenchida — endereçável por saneamento.</p></div>
+      </div>
+      <div class="lim">
+        <span class="ic">ℹ️</span>
+        <div><span class="t">O gabarito é parcial</span>
+        <p><code>ngd_homologated</code> vazio em ~65% dos casos, o que limita medir a precisão contra um "certo" oficial. Vira, ele próprio, um indicador de cobertura a confirmar com o RevOps.</p></div>
+      </div>
+      <div class="lim">
+        <span class="ic">🔒</span>
+        <div><span class="t">Sistemas externos ficam de fora</span>
+        <p>ERP, Sense Data, e-mail, HubSpot, SharePoint — checks que dependem deles são marcados como ressalva para revisão humana, não chutados. Entram na projeção como degraus futuros.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section>
+  <div class="wrap">
+    <div class="cta">
+      <h2>Ver o agente rodando</h2>
+      <p>A aplicação processa as 302 oportunidades ao vivo no ambiente de homologação e mostra a fila triada,
+      o detalhe de cada veredito elo a elo e os indicadores.</p>
+      <a class="btn" href="https://poc-neogrid-homologacao-production.up.railway.app">Abrir a POC →</a>
+      <small>Acesso restrito — a aplicação lê o homolog ao vivo, com dados de cliente mascarados na tela. Credenciais com a equipe Neogrid.</small>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div><strong>Agente de Homologação SalesDesk</strong> · Dalton Lab para Neogrid · 2026</div>
+    <div>Somente leitura sobre o ambiente de homologação · Dados mascarados</div>
+  </div>
+</footer>
+
+</body>
+</html>
