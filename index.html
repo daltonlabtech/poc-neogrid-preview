@@ -279,7 +279,8 @@
       <strong>O objetivo desta POC</strong> não é provar que a IA "faz tudo". É demonstrar, sobre dados reais
       do ambiente de homologação, que existe um caminho prático e <strong>auditável</strong> para o agente
       assumir a parte repetitiva do cross-check — deixando para o humano só o que é, de fato, ambíguo.
-      O agente roda os <strong>39 checks do playbook</strong> em cada oportunidade e devolve um veredito —
+      O agente roda os <strong>39 checks do playbook</strong> — desdobrados em 42 verificações por oportunidade,
+      como detalhado em Resultados — e devolve um veredito —
       <em>aprovado, reprovado, devolvido</em> ou <em>revisão humana</em> — sempre com o campo e o valor que
       sustentaram a decisão. Nada inferido sem evidência: se o dado não existe, o agente diz "sem cobertura", não inventa.
     </p>
@@ -363,6 +364,16 @@
         <span><span class="sw hum"></span> Resíduo humano irredutível</span>
       </div>
     </div>
+
+    <p class="note" style="color:var(--ink-faint);font-size:13px;margin:14px 0 6px;">
+      <strong>Por que 42 verificações por oportunidade, se o playbook tem 39 checks?</strong> O agente roda os
+      <strong>39 checks oficiais + 3 sentinelas</strong> — sub-checks determinísticos criados pela POC para dar
+      evidência própria a validações que o playbook descreve dentro de outros checks: <em>#101 porte da conta</em>
+      (a comparação porte × solução do elo 1), <em>#102 config do item de SETUP</em> (Hub vinculado / config
+      Published) e <em>#103 Nível de Atendimento</em> (item exigido pela regra de Novo Cliente). As sentinelas não
+      criam regra nova — só desdobram regras já escritas — e são numeradas fora da faixa 1–39 de propósito, para
+      nunca se confundirem com os checks oficiais. Os totais acima (5.664 / 9.044) já contam as 42.
+    </p>
 
     <div class="kpis">
       <div class="kpi"><div class="num">296</div><div class="lbl">oportunidades processadas</div><div class="sub">ao vivo no CRM homolog</div></div>
