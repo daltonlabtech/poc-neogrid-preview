@@ -253,7 +253,7 @@
       <div class="m"><div class="mk">Cliente</div><div class="mv">Neogrid</div></div>
       <div class="m"><div class="mk">Executor</div><div class="mv">Dalton Lab</div></div>
       <div class="m"><div class="mk">Escopo</div><div class="mv">Pós-venda (oportunidade ganha)</div></div>
-      <div class="m"><div class="mk">Base</div><div class="mv">302 opps reais · CRM homolog</div></div>
+      <div class="m"><div class="mk">Base</div><div class="mv">296 opps reais · CRM homolog</div></div>
     </div>
   </div>
 </header>
@@ -297,7 +297,7 @@
         <h3>Leitura determinística do CRM</h3>
         <p>A maior parte dos checks é conferência direta de campo — itens, lista de preço, contatos,
         condição de pagamento. Script puro, somente leitura, comparado com a regra do playbook.
-        É o núcleo confiável: hoje resolve <strong class="d">65%</strong> dos checks que toca.</p>
+        É o núcleo confiável: hoje resolve <strong class="d">90%</strong> dos checks que toca.</p>
       </div>
       <div class="step-card">
         <div class="step-num">2</div>
@@ -321,7 +321,7 @@
 <section>
   <div class="wrap">
     <div class="kicker">Resultados</div>
-    <h2>O que o agente conseguiu, sobre 302 oportunidades reais.</h2>
+    <h2>O que o agente conseguiu, sobre 296 oportunidades reais.</h2>
 
     <!-- funil do universo -->
     <p class="lead">Primeiro, a base. O ambiente de homologação tinha muito ruído de teste — limpamos antes de medir.</p>
@@ -332,40 +332,40 @@
       </div>
       <div class="step">
         <div class="lbl">Válidas (sem lixo de teste/QA)</div>
-        <div class="track"><div class="seg valid" style="width:21.6%">302</div></div>
+        <div class="track"><div class="seg valid" style="width:21.1%">296</div></div>
       </div>
     </div>
     <p class="note" style="color:var(--ink-faint);font-size:13px;margin-bottom:34px;">
       ~79% das "ganhas" eram registros de teste ("TESTE 01", "wddsd", "A"). Filtramos por heurística antes de
-      processar — as 302 válidas foram todas analisadas pela POC.
+      processar — as 296 válidas foram todas analisadas pela POC.
     </p>
 
     <!-- barra de cobertura -->
     <div class="cover-hero">
       <div class="top">
         <div>
-          <div class="pct">46<small>%</small></div>
+          <div class="pct">63<small>%</small></div>
           <div style="color:var(--ink-soft);font-size:15px;margin-top:4px;">dos checks verificáveis <strong class="d">decididos automaticamente</strong></div>
         </div>
         <div class="frac">
-          <b>3.761</b> decididos<br>
-          de <b>8.258</b> verificáveis<br>
+          <b>5.664</b> decididos<br>
+          de <b>9.044</b> verificáveis<br>
           <span style="color:var(--ink-faint);font-size:13px;">(exclui o que vai a revisão humana)</span>
         </div>
       </div>
       <div class="bar">
-        <div class="fill" style="width:46%"></div>
-        <div class="ghost" style="width:43%"></div>
+        <div class="fill" style="width:63%"></div>
+        <div class="ghost" style="width:26%"></div>
       </div>
       <div class="barlegend">
-        <span><span class="sw now"></span> Decidido pela POC hoje · 46%</span>
+        <span><span class="sw now"></span> Decidido pela POC hoje · 63%</span>
         <span><span class="sw proj"></span> Destravável com acesso/saneamento</span>
         <span><span class="sw hum"></span> Resíduo humano irredutível</span>
       </div>
     </div>
 
     <div class="kpis">
-      <div class="kpi"><div class="num">302</div><div class="lbl">oportunidades processadas</div><div class="sub">ao vivo no CRM homolog</div></div>
+      <div class="kpi"><div class="num">296</div><div class="lbl">oportunidades processadas</div><div class="sub">ao vivo no CRM homolog</div></div>
       <div class="kpi"><div class="num ink">~seg</div><div class="lbl">por oportunidade triada</div><div class="sub">vs. ~12 min manuais</div></div>
       <div class="kpi"><div class="num amber">26</div><div class="lbl">dos 39 checks são lidos do CRM</div><div class="sub">16 por script · 10 por IA</div></div>
       <div class="kpi"><div class="num ink">100%</div><div class="lbl">das decisões com evidência</div><div class="sub">campo + valor de origem</div></div>
@@ -373,9 +373,12 @@
 
     <p style="margin-top:24px">
       O indicador que importa não é "quantos a IA aprovou" — vereditos hoje são
-      <strong class="d">160 devolvidos · 139 reprovados · 3 aprovados</strong>, esperado num ambiente onde o dado
-      ainda está incompleto. O que importa é <strong>quanto do trabalho repetitivo sai da mesa da analista</strong>,
-      com cada decisão auditável.
+      <strong class="d">157 devolvidos · 139 reprovados · 0 aprovados</strong>. Nenhuma oportunidade real sai aprovada,
+      e isso é o esperado: <strong>292 das 296 opps (98,6%) têm ≥1 campo obrigatório vazio</strong> — o agente
+      sinaliza cada campo vazio como <em>devolvido</em> no check correspondente; o veredito final da opp sai
+      <em>devolvido</em> ou <em>reprovado</em>, conforme o elo que quebrar primeiro. O volume de devoluções e reprovações
+      reflete a qualidade de preenchimento do ambiente de homologação (opps não finalizadas), não erro do agente. O que importa é
+      <strong>quanto do trabalho repetitivo sai da mesa da analista</strong>, com cada decisão auditável.
     </p>
   </div>
 </section>
@@ -384,20 +387,20 @@
 <section class="alt">
   <div class="wrap">
     <div class="kicker">O que aumenta a cobertura</div>
-    <h2>Onde os outros 54% estão presos — e o que os destrava.</h2>
+    <h2>Onde os outros 37% estão presos — e o que os destrava.</h2>
     <p class="lead">
-      O agente não está "errando" os 54% restantes. Ele está sendo honesto: ou o dado-fonte não existe no CRM,
+      O agente não está "errando" os 37% restantes. Ele está sendo honesto: ou o dado-fonte não existe no CRM,
       ou ele vive num sistema fora do alcance da POC. Cada acesso liberado destrava um bloco de checks.
     </p>
 
     <div class="acc-grid">
       <div class="acc-item">
         <div class="h"><span class="n">PDF da proposta anexado</span><span class="plus">+2.894</span></div>
-        <p>Hoje só 19 das 302 opps têm o PDF no CRM; o resto vive no SharePoint. Destrava o bloco documental inteiro (checks 22–33). <strong>A dúvida #1 a fechar.</strong></p>
+        <p>Hoje só 18 das 296 opps têm o PDF no CRM; o resto vive no SharePoint. Destrava o bloco documental inteiro (checks 22–33). <strong>A dúvida #1 a fechar.</strong></p>
       </div>
       <div class="acc-item">
-        <div class="h"><span class="n">Saneamento de campos no CRM</span><span class="plus">+1.081</span></div>
-        <p>Preencher porte, solução, backoffice, canal — campos hoje vazios. Sem integração nova: é decisão de processo (checks 5, 6, 8, 16, 19, 21).</p>
+        <div class="h"><span class="n">Saneamento + definições de regra</span><span class="plus">+479</span></div>
+        <p>Campo vazio já não trava a cobertura: o agente decide como <em>devolvido</em>. O que ainda destrava aqui são duas definições com o time — a fonte oficial do porte (+243) e a regra de EDI/WhatsApp (+236). Sanear os campos no CRM converte devoluções em aprovações.</p>
       </div>
       <div class="acc-item">
         <div class="h"><span class="n">E-mail / HubSpot</span><span class="plus">+891</span></div>
@@ -418,9 +421,9 @@
     </div>
 
     <div class="callout">
-      <strong>Os dois primeiros são os que importam para a POC.</strong> Saneamento de campos + PDF da proposta
+      <strong>Os dois primeiros são os que importam para a POC.</strong> PDF da proposta + definições de regra
       não dependem de integração nova — dependem de uma decisão de processo. Sozinhos, levam a cobertura de
-      <strong>46% para 74%</strong>. O PDF é o maior salto isolado: o bloco documental está travado por falta de
+      <strong>63% para ~86%</strong>. O PDF é o maior salto isolado: o bloco documental está travado por falta de
       anexo, não por incapacidade da IA.
     </div>
   </div>
@@ -432,9 +435,10 @@
     <div class="kicker">Projeção</div>
     <h2>A escada: cobertura à medida que os acessos se abrem.</h2>
     <p class="lead">
-      Partindo dos 46% medidos hoje e somando acesso por acesso. A aritmética é conservadora —
-      "destravar um check" não é o mesmo que "decidi-lo", então aplicamos um fator de decisão realista
-      por degrau. O denominador também cresce conforme um check sai da revisão.
+      Partindo dos 63% medidos hoje e somando acesso por acesso. A aritmética é conservadora —
+      "destravar um check" não é o mesmo que "decidi-lo": no degrau do PDF aplicamos fator de decisão de ~0,7
+      (nem todo PDF anexado é legível/completo), e o bloco documental já conta no denominador de hoje.
+      Nos degraus de integração, os checks saem da revisão humana e entram no universo verificável.
     </p>
 
     <div class="table-wrap">
@@ -452,38 +456,38 @@
         <tbody>
           <tr class="baseline">
             <td class="acc">Hoje — POC read-only</td>
-            <td class="num">—</td><td class="num">3.761</td><td class="num">8.258</td>
-            <td><span class="minibar" style="width:55px"></span><strong>46%</strong></td>
+            <td class="num">—</td><td class="num">5.664</td><td class="num">9.044</td>
+            <td><span class="minibar" style="width:75px"></span><strong>63%</strong></td>
             <td><span class="pill-tag now">no ar</span></td>
           </tr>
           <tr>
-            <td>+ Saneamento de campos no CRM</td>
-            <td class="num">1.081</td><td class="num">4.680</td><td class="num">8.360</td>
-            <td><span class="minibar" style="width:67px"></span><strong>56%</strong></td>
+            <td>+ Porte + regra EDI (definições Gilson)</td>
+            <td class="num">479</td><td class="num">6.143</td><td class="num">9.523</td>
+            <td><span class="minibar" style="width:78px"></span><strong>65%</strong></td>
             <td><span class="pill-tag gilson">decisão Gilson</span></td>
           </tr>
           <tr>
             <td>+ PDF da proposta anexado</td>
-            <td class="num">2.894</td><td class="num">6.706</td><td class="num">9.046</td>
-            <td><span class="minibar" style="width:89px"></span><strong>74%</strong></td>
+            <td class="num">2.894</td><td class="num">8.169</td><td class="num">9.523</td>
+            <td><span class="minibar" style="width:103px"></span><strong>86%</strong></td>
             <td><span class="pill-tag gilson">decisão Gilson</span></td>
           </tr>
           <tr>
             <td>+ E-mail / HubSpot</td>
-            <td class="num">891</td><td class="num">7.374</td><td class="num">9.398</td>
-            <td><span class="minibar" style="width:94px"></span><strong>78%</strong></td>
+            <td class="num">891</td><td class="num">9.060</td><td class="num">10.414</td>
+            <td><span class="minibar" style="width:104px"></span><strong>87%</strong></td>
             <td><span class="pill-tag integ">integração</span></td>
           </tr>
           <tr>
             <td>+ ERP TOTVS</td>
-            <td class="num">665</td><td class="num">8.396</td><td class="num">9.936</td>
-            <td><span class="minibar" style="width:101px"></span><strong>85%</strong></td>
+            <td class="num">665</td><td class="num">9.725</td><td class="num">11.079</td>
+            <td><span class="minibar" style="width:106px"></span><strong>88%</strong></td>
             <td><span class="pill-tag integ">integração</span></td>
           </tr>
           <tr>
             <td>+ Demais sistemas (Sense Data, FE, TOTVS, atividades)</td>
-            <td class="num">1.159</td><td class="num">9.352</td><td class="num">10.508</td>
-            <td><span class="minibar" style="width:106px"></span><strong>89%</strong></td>
+            <td class="num">1.159</td><td class="num">10.884</td><td class="num">12.238</td>
+            <td><span class="minibar" style="width:107px"></span><strong>89%</strong></td>
             <td><span class="pill-tag integ">integração</span></td>
           </tr>
         </tbody>
@@ -511,7 +515,7 @@
       <div class="scn">
         <div class="tag">Hoje · POC read-only</div>
         <div class="hh acc">~55<small>%</small></div>
-        <div class="desc">do tempo de cross-check por oportunidade poupado. O humano revisa só o que sobra dos 46% decididos, em vez de conferir 39 itens do zero.</div>
+        <div class="desc">do tempo de cross-check por oportunidade poupado. O humano revisa só o que sobra dos 63% decididos, em vez de conferir 39 itens do zero.</div>
         <div class="metric">≈ <b>5,5 min</b> poupados/opp · <b>~44 h/mês</b> no volume atual</div>
       </div>
       <div class="scn feature">
@@ -530,8 +534,8 @@
 
     <div class="callout">
       <strong>O salto da permissão de escrita não é de % — é de natureza.</strong> Hoje a POC é 100% somente-leitura:
-      ela <em>classifica</em>, o humano <em>age</em>. Com escrita, das 302 opps, o agente resolveria sozinho as 3 aprovadas
-      e ~104 das 160 devoluções que travam por campo derivável (porte via política de porte, solução, backoffice) —
+      ela <em>classifica</em>, o humano <em>age</em>. Com escrita, das 296 opps, o agente resolveria sozinho
+      ~104 das 157 devoluções que travam por campo derivável (porte via política de porte, solução, backoffice) —
       cerca de <strong>35% das opps deixariam de tocar a fila humana</strong>. As reprovações por regra de negócio
       seguem para o humano, mas já com a devolução redigida.
     </div>
@@ -543,12 +547,13 @@
 <section>
   <div class="wrap read">
     <div class="kicker">Como o agente decide</div>
-    <h2>Três casos concretos, com a evidência ao lado.</h2>
+    <h2>Três casos que mostram a lógica, com a evidência ao lado.</h2>
     <div class="examples">
       <div class="ex ok">
         <span class="badge">Aprovado</span>
         <p>Oportunidade ganha com itens preenchidos, lista de preço coerente e contrato no ERP já presente
-        (<code>ngd_contractid = E002-…</code>). Os elos fecham. O agente aprova e mostra cada campo que sustentou a decisão.</p>
+        (<code>ngd_contractid = E002-…</code>). Os elos fecham. O agente aprova e mostra cada campo que sustentou a decisão.
+        <em>(Ilustração de como o agente decide quando os dados estão completos — no banco de homolog atual, nenhuma opp real atinge este veredito; ver Resultados.)</em></p>
       </div>
       <div class="ex no">
         <span class="badge">Reprovado</span>
@@ -574,7 +579,7 @@
       <div class="lim">
         <span class="ic">⚠️</span>
         <div><span class="t">A proposta raramente está anexada</span>
-        <p>Só 19 das 302 opps têm o PDF no CRM (≈4,6% no universo total). Os ~10 checks documentais só funcionam onde o PDF existe. Definir "o que conta como proposta enviada" é o que mais governa o tamanho da POC.</p></div>
+        <p>Só 18 das 296 opps têm o PDF no CRM (≈4,6% no universo total). Os ~10 checks documentais só funcionam onde o PDF existe. Definir "o que conta como proposta enviada" é o que mais governa o tamanho da POC.</p></div>
       </div>
       <div class="lim">
         <span class="ic">⚠️</span>
@@ -600,7 +605,7 @@
   <div class="wrap">
     <div class="cta">
       <h2>Ver o agente rodando</h2>
-      <p>A aplicação processa as 302 oportunidades ao vivo no ambiente de homologação e mostra a fila triada,
+      <p>A aplicação processa as 296 oportunidades ao vivo no ambiente de homologação e mostra a fila triada,
       o detalhe de cada veredito elo a elo e os indicadores.</p>
       <a class="btn" href="https://poc-neogrid-homologacao-production.up.railway.app">Abrir a POC →</a>
       <small>Acesso restrito — a aplicação lê o homolog ao vivo, com dados de cliente mascarados na tela. Credenciais com a equipe Neogrid.</small>
