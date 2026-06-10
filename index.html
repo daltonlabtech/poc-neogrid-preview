@@ -298,7 +298,7 @@
         <h3>Leitura determinística do CRM</h3>
         <p>A maior parte dos checks é conferência direta de campo — itens, lista de preço, contatos,
         condição de pagamento. Script puro, somente leitura, comparado com a regra do playbook.
-        É o núcleo confiável: hoje resolve <strong class="d">90%</strong> dos checks que toca.</p>
+        É o núcleo confiável: hoje resolve <strong class="d">93,8%</strong> dos checks que toca.</p>
       </div>
       <div class="step-card">
         <div class="step-num">2</div>
@@ -345,21 +345,21 @@
     <div class="cover-hero">
       <div class="top">
         <div>
-          <div class="pct">63<small>%</small></div>
+          <div class="pct">65<small>%</small></div>
           <div style="color:var(--ink-soft);font-size:15px;margin-top:4px;">dos checks verificáveis <strong class="d">decididos automaticamente</strong></div>
         </div>
         <div class="frac">
-          <b>5.664</b> decididos<br>
+          <b>5.900</b> decididos<br>
           de <b>9.044</b> verificáveis<br>
           <span style="color:var(--ink-faint);font-size:13px;">(exclui o que vai a revisão humana)</span>
         </div>
       </div>
       <div class="bar">
-        <div class="fill" style="width:63%"></div>
+        <div class="fill" style="width:65%"></div>
         <div class="ghost" style="width:26%"></div>
       </div>
       <div class="barlegend">
-        <span><span class="sw now"></span> Decidido pela POC hoje · 63%</span>
+        <span><span class="sw now"></span> Decidido pela POC hoje · 65%</span>
         <span><span class="sw proj"></span> Destravável com acesso/saneamento</span>
         <span><span class="sw hum"></span> Resíduo humano irredutível</span>
       </div>
@@ -372,7 +372,7 @@
       (a comparação porte × solução do elo 1), <em>#102 config do item de SETUP</em> (Hub vinculado / config
       Published) e <em>#103 Nível de Atendimento</em> (item exigido pela regra de Novo Cliente). As sentinelas não
       criam regra nova — só desdobram regras já escritas — e são numeradas fora da faixa 1–39 de propósito, para
-      nunca se confundirem com os checks oficiais. Os totais acima (5.664 / 9.044) já contam as 42.
+      nunca se confundirem com os checks oficiais. Os totais acima (5.900 / 9.044) já contam as 42.
     </p>
 
     <div class="kpis">
@@ -398,9 +398,9 @@
 <section class="alt">
   <div class="wrap">
     <div class="kicker">O que aumenta a cobertura</div>
-    <h2>Onde os outros 37% estão presos — e o que os destrava.</h2>
+    <h2>Onde os outros 35% estão presos — e o que os destrava.</h2>
     <p class="lead">
-      O agente não está "errando" os 37% restantes. Ele está sendo honesto: ou o dado-fonte não existe no CRM,
+      O agente não está "errando" os 35% restantes. Ele está sendo honesto: ou o dado-fonte não existe no CRM,
       ou ele vive num sistema fora do alcance da POC. Cada acesso liberado destrava um bloco de checks.
     </p>
 
@@ -410,8 +410,8 @@
         <p>Hoje só 18 das 296 opps têm o PDF no CRM; o resto vive no SharePoint. Destrava o bloco documental inteiro (checks 22–33). <strong>A dúvida #1 a fechar.</strong></p>
       </div>
       <div class="acc-item">
-        <div class="h"><span class="n">Saneamento + definições de regra</span><span class="plus">+479</span></div>
-        <p>Campo vazio já não trava a cobertura: o agente decide como <em>devolvido</em>. O que ainda destrava aqui são duas definições com o time — a fonte oficial do porte (+243) e a regra de EDI/WhatsApp (+236). Sanear os campos no CRM converte devoluções em aprovações.</p>
+        <div class="h"><span class="n">Porte da conta (definição Gilson)</span><span class="plus">+243</span></div>
+        <p>Campo vazio já não trava a cobertura: o agente decide como <em>devolvido</em>. A regra de EDI/WhatsApp já entrou no motor (somada aos 65% de hoje); o que resta aqui é uma única definição com o time — a fonte oficial do porte. Sanear o campo no CRM converte devoluções em aprovações.</p>
       </div>
       <div class="acc-item">
         <div class="h"><span class="n">E-mail / HubSpot</span><span class="plus">+891</span></div>
@@ -432,9 +432,9 @@
     </div>
 
     <div class="callout">
-      <strong>Os dois primeiros são os que importam para a POC.</strong> PDF da proposta + definições de regra
+      <strong>Os dois primeiros são os que importam para a POC.</strong> PDF da proposta + definição do porte
       não dependem de integração nova — dependem de uma decisão de processo. Sozinhos, levam a cobertura de
-      <strong>63% para ~86%</strong>. O PDF é o maior salto isolado: o bloco documental está travado por falta de
+      <strong>65% para ~88%</strong>. O PDF é o maior salto isolado: o bloco documental está travado por falta de
       anexo, não por incapacidade da IA.
     </div>
   </div>
@@ -446,7 +446,7 @@
     <div class="kicker">Projeção</div>
     <h2>A escada: cobertura à medida que os acessos se abrem.</h2>
     <p class="lead">
-      Partindo dos 63% medidos hoje e somando acesso por acesso. A aritmética é conservadora —
+      Partindo dos 65% medidos hoje e somando acesso por acesso. A aritmética é conservadora —
       "destravar um check" não é o mesmo que "decidi-lo": no degrau do PDF aplicamos fator de decisão de ~0,7
       (nem todo PDF anexado é legível/completo), e o bloco documental já conta no denominador de hoje.
       Nos degraus de integração, os checks saem da revisão humana e entram no universo verificável.
@@ -467,46 +467,46 @@
         <tbody>
           <tr class="baseline">
             <td class="acc">Hoje — POC read-only</td>
-            <td class="num">—</td><td class="num">5.664</td><td class="num">9.044</td>
-            <td><span class="minibar" style="width:75px"></span><strong>63%</strong></td>
+            <td class="num">—</td><td class="num">5.900</td><td class="num">9.044</td>
+            <td><span class="minibar" style="width:78px"></span><strong>65%</strong></td>
             <td><span class="pill-tag now">no ar</span></td>
           </tr>
           <tr>
-            <td>+ Porte + regra EDI (definições Gilson)</td>
-            <td class="num">479</td><td class="num">6.143</td><td class="num">9.523</td>
-            <td><span class="minibar" style="width:78px"></span><strong>65%</strong></td>
+            <td>+ Porte (definição Gilson)</td>
+            <td class="num">243</td><td class="num">6.143</td><td class="num">9.287</td>
+            <td><span class="minibar" style="width:79px"></span><strong>66%</strong></td>
             <td><span class="pill-tag gilson">decisão Gilson</span></td>
           </tr>
           <tr>
             <td>+ PDF da proposta anexado</td>
-            <td class="num">2.894</td><td class="num">8.169</td><td class="num">9.523</td>
-            <td><span class="minibar" style="width:103px"></span><strong>86%</strong></td>
+            <td class="num">2.894</td><td class="num">8.169</td><td class="num">9.287</td>
+            <td><span class="minibar" style="width:106px"></span><strong>88%</strong></td>
             <td><span class="pill-tag gilson">decisão Gilson</span></td>
           </tr>
           <tr>
             <td>+ E-mail / HubSpot</td>
-            <td class="num">891</td><td class="num">9.060</td><td class="num">10.414</td>
-            <td><span class="minibar" style="width:104px"></span><strong>87%</strong></td>
+            <td class="num">891</td><td class="num">9.060</td><td class="num">10.178</td>
+            <td><span class="minibar" style="width:107px"></span><strong>89%</strong></td>
             <td><span class="pill-tag integ">integração</span></td>
           </tr>
           <tr>
             <td>+ ERP TOTVS</td>
-            <td class="num">665</td><td class="num">9.725</td><td class="num">11.079</td>
-            <td><span class="minibar" style="width:106px"></span><strong>88%</strong></td>
+            <td class="num">665</td><td class="num">9.725</td><td class="num">10.843</td>
+            <td><span class="minibar" style="width:108px"></span><strong>90%</strong></td>
             <td><span class="pill-tag integ">integração</span></td>
           </tr>
           <tr>
             <td>+ Demais sistemas (Sense Data, FE, TOTVS, atividades)</td>
-            <td class="num">1.159</td><td class="num">10.884</td><td class="num">12.238</td>
-            <td><span class="minibar" style="width:107px"></span><strong>89%</strong></td>
+            <td class="num">1.159</td><td class="num">10.884</td><td class="num">12.002</td>
+            <td><span class="minibar" style="width:109px"></span><strong>91%</strong></td>
             <td><span class="pill-tag integ">integração</span></td>
           </tr>
         </tbody>
       </table>
     </div>
     <p class="onepager-note">
-      Teto realista: com todos os acessos + saneamento, a POC decidiria <strong>~89%</strong> dos checks verificáveis.
-      Os ~11% restantes são genuinamente humanos (julgamento de conformidade, exceções comerciais, GN1/GN2) —
+      Teto realista: com todos os acessos + saneamento, a POC decidiria <strong>~91%</strong> dos checks verificáveis.
+      Os ~9% restantes são genuinamente humanos (julgamento de conformidade, exceções comerciais, GN1/GN2) —
       não elimináveis por acesso, por desenho. Os fatores de decisão por degrau são premissas conservadoras, a validar.
     </p>
   </div>
@@ -525,21 +525,21 @@
     <div class="scenarios">
       <div class="scn">
         <div class="tag">Hoje · POC read-only</div>
-        <div class="hh acc">~55<small>%</small></div>
-        <div class="desc">do tempo de cross-check por oportunidade poupado. O humano revisa só o que sobra dos 63% decididos, em vez de conferir 39 itens do zero.</div>
-        <div class="metric">≈ <b>5,5 min</b> poupados/opp · <b>~44 h/mês</b> no volume atual</div>
+        <div class="hh acc">~57<small>%</small></div>
+        <div class="desc">do tempo de cross-check por oportunidade poupado. O humano revisa só o que sobra dos 65% decididos, em vez de conferir 39 itens do zero.</div>
+        <div class="metric">≈ <b>6,8 min</b> poupados/opp · <b>~55 h/mês</b> no volume atual</div>
       </div>
       <div class="scn feature">
-        <div class="tag">+ Acessos externos · ~89% cobertura</div>
-        <div class="hh acc">~88<small>%</small></div>
-        <div class="desc">com PDF, saneamento e integrações, o humano revisa só os ~11% genuinamente ambíguos. O cross-check vira uma confirmação rápida.</div>
-        <div class="metric">≈ <b>10,5 min</b> poupados/opp · <b>~85 h/mês</b></div>
+        <div class="tag">+ Acessos externos · ~91% cobertura</div>
+        <div class="hh acc">~90<small>%</small></div>
+        <div class="desc">com PDF, saneamento e integrações, o humano revisa só os ~9% genuinamente ambíguos. O cross-check vira uma confirmação rápida.</div>
+        <div class="metric">≈ <b>10,8 min</b> poupados/opp · <b>~87 h/mês</b></div>
       </div>
       <div class="scn">
         <div class="tag">+ Permissão de escrita</div>
         <div class="hh">muda a natureza</div>
         <div class="desc">o agente deixa de só apontar e passa a <strong>resolver</strong>: saneia o campo faltante, devolve ao vendedor com o motivo, conclui a atividade. ~1/3 das opps nem chega à fila humana.</div>
-        <div class="metric">≈ <b>90 h/mês</b> · &gt; meio FTE recuperado</div>
+        <div class="metric">≈ <b>92 h/mês</b> · &gt; meio FTE recuperado</div>
       </div>
     </div>
 
@@ -550,7 +550,7 @@
       cerca de <strong>35% das opps deixariam de tocar a fila humana</strong>. As reprovações por regra de negócio
       seguem para o humano, mas já com a devolução redigida.
     </div>
-    <p class="onepager-note">Premissas: ~12 min de cross-check manual por opp e ~484 opps/mês — estimativas a validar com a Schaiane. Os fatores de resolução com escrita são conservadores; recomenda-se medir a causa-raiz das 160 devoluções antes de cravar o 35%.</p>
+    <p class="onepager-note">Premissas: ~12 min de cross-check manual por opp e ~484 opps/mês — estimativas a validar com a Schaiane. Os fatores de resolução com escrita são conservadores; recomenda-se medir a causa-raiz das 157 devoluções antes de cravar o 35%.</p>
   </div>
 </section>
 
