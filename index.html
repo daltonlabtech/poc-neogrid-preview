@@ -345,25 +345,50 @@
     <div class="cover-hero">
       <div class="top">
         <div>
-          <div class="pct">65,2<small>%</small></div>
-          <div style="color:var(--ink-soft);font-size:15px;margin-top:4px;">dos checks verificáveis <strong class="d">decididos automaticamente</strong></div>
+          <div class="pct">47,5<small>%</small></div>
+          <div style="color:var(--ink-soft);font-size:15px;margin-top:4px;">de <strong class="d">todo o universo de checks</strong> já decidido automaticamente hoje</div>
         </div>
         <div class="frac">
           <b>5.900</b> decididos<br>
-          de <b>9.044</b> verificáveis<br>
-          <span style="color:var(--ink-faint);font-size:13px;">(exclui o que vai a revisão humana)</span>
+          de <b>12.432</b> checks no total<br>
+          <span style="color:var(--ink-faint);font-size:13px;">(296 opps × 42 verificações)</span>
         </div>
       </div>
       <div class="bar">
-        <div class="fill" style="width:65%"></div>
-        <div class="ghost" style="width:26%"></div>
+        <div class="fill" style="width:47.5%"></div>
+        <div class="ghost" style="width:25.2%"></div>
       </div>
       <div class="barlegend">
-        <span><span class="sw now"></span> Decidido pela POC hoje · 65,2%</span>
-        <span><span class="sw proj"></span> Destravável com acesso/saneamento</span>
-        <span><span class="sw hum"></span> Resíduo humano irredutível</span>
+        <span><span class="sw now"></span> Cobertura: decidido hoje · 47,5%</span>
+        <span><span class="sw proj"></span> Ao alcance, ainda não decidido · até a capacidade (72,7%)</span>
+        <span><span class="sw hum"></span> Fora de alcance · exige revisão humana</span>
       </div>
     </div>
+
+    <!-- as 3 camadas: capacidade × aproveitamento = cobertura -->
+    <div class="kpis" style="margin-top:24px">
+      <div class="kpi">
+        <div class="num">72,7<small style="font-size:0.5em;color:var(--ink-faint);font-weight:500;">%</small></div>
+        <div class="lbl"><strong class="d">Capacidade</strong> — o teto</div>
+        <div class="sub">9.044 de 12.432 checks têm condição de ser julgados hoje. O resto exige revisão humana — falta de PDF/dado é limite de input, não falha do agente.</div>
+      </div>
+      <div class="kpi">
+        <div class="num amber">65,2<small style="font-size:0.5em;color:var(--ink-faint);font-weight:500;">%</small></div>
+        <div class="lbl"><strong class="d">Aproveitamento</strong> — sobre o possível</div>
+        <div class="sub">dos 72,7% ao alcance, a POC já decide 65,2% (5.900 de 9.044). Eficiência sobre o que dá para julgar com os dados de hoje.</div>
+      </div>
+      <div class="kpi">
+        <div class="num ink">47,5<small style="font-size:0.5em;color:var(--ink-faint);font-weight:500;">%</small></div>
+        <div class="lbl"><strong class="d">Cobertura</strong> — ponta a ponta</div>
+        <div class="sub">o número honesto sobre todo o universo: 5.900 de 12.432. É capacidade × aproveitamento — a aritmética que amarra os três.</div>
+      </div>
+    </div>
+    <p class="note" style="color:var(--ink-faint);font-size:13px;margin:16px 0 6px;">
+      <strong>A identidade que prova a honestidade do número:</strong> <strong class="d">47,5% = 72,7% × 65,2%</strong>.
+      A capacidade é o teto que a POC alcança com os acessos de hoje; sobe quando entram novos inputs (PDF anexado,
+      ERP, porte saneado). O aproveitamento é a eficiência da POC dentro desse teto. A cobertura — o produto dos dois —
+      é o que de fato já sai automatizado sobre o universo inteiro, sem esconder o denominador.
+    </p>
 
     <p class="note" style="color:var(--ink-faint);font-size:13px;margin:14px 0 6px;">
       <strong>Por que 42 verificações por oportunidade, se o playbook tem 39 checks?</strong> O agente roda os
@@ -372,7 +397,8 @@
       (a comparação porte × solução do elo 1), <em>#102 config do item de SETUP</em> (Hub vinculado / config
       Published) e <em>#103 Nível de Atendimento</em> (item exigido pela regra de Novo Cliente). As sentinelas não
       criam regra nova — só desdobram regras já escritas — e são numeradas fora da faixa 1–39 de propósito, para
-      nunca se confundirem com os checks oficiais. Os totais acima (5.900 / 9.044) já contam as 42.
+      nunca se confundirem com os checks oficiais. O universo total (12.432 = 296 × 42), os 9.044 verificáveis
+      e os 5.900 decididos acima já contam as 42.
     </p>
 
     <div class="kpis">
@@ -398,10 +424,11 @@
 <section class="alt">
   <div class="wrap">
     <div class="kicker">O que aumenta a cobertura</div>
-    <h2>Onde os outros 35% estão presos — e o que os destrava.</h2>
+    <h2>Onde os outros 52,5% estão presos — e o que os destrava.</h2>
     <p class="lead">
-      O agente não está "errando" os 35% restantes. Ele está sendo honesto: ou o dado-fonte não existe no CRM,
-      ou ele vive num sistema fora do alcance da POC. Cada acesso liberado destrava um bloco de checks.
+      O agente não está "errando" os 52,5% que ainda não decide. Ele está sendo honesto: ou o dado-fonte não
+      existe no CRM, ou ele vive num sistema fora do alcance da POC. Cada acesso liberado eleva a <strong>capacidade</strong>
+      (o teto de 72,7% sobe) e, com ela, a cobertura sobre o universo inteiro.
     </p>
 
     <div class="acc-grid">
@@ -411,7 +438,7 @@
       </div>
       <div class="acc-item">
         <div class="h"><span class="n">Porte da conta (definição Gilson)</span><span class="plus">+243</span></div>
-        <p>Campo vazio já não trava a cobertura: o agente decide como <em>devolvido</em>. A regra de EDI/WhatsApp já entrou no motor (somada aos 65% de hoje); o que resta aqui é uma única definição com o time — a fonte oficial do porte. Sanear o campo no CRM converte devoluções em aprovações.</p>
+        <p>Campo vazio já não trava a cobertura: o agente decide como <em>devolvido</em>. A regra de EDI/WhatsApp já entrou no motor (somada aos 47,5% de cobertura de hoje); o que resta aqui é uma única definição com o time — a fonte oficial do porte. Sanear o campo no CRM converte devoluções em aprovações.</p>
       </div>
       <div class="acc-item">
         <div class="h"><span class="n">E-mail / HubSpot</span><span class="plus">+891</span></div>
@@ -434,8 +461,8 @@
     <div class="callout">
       <strong>Os dois primeiros são os que importam para a POC.</strong> PDF da proposta + definição do porte
       não dependem de integração nova — dependem de uma decisão de processo. Sozinhos, levam a cobertura de
-      <strong>65% para ~88%</strong>. O PDF é o maior salto isolado: o bloco documental está travado por falta de
-      anexo, não por incapacidade da IA.
+      <strong>47,5% para ~72,7%</strong> (e elevam o teto de capacidade na mesma medida). O PDF é o maior salto
+      isolado: o bloco documental está travado por falta de anexo, não por incapacidade da IA.
     </div>
   </div>
 </section>
@@ -446,10 +473,10 @@
     <div class="kicker">Projeção</div>
     <h2>A escada: cobertura à medida que os acessos se abrem.</h2>
     <p class="lead">
-      Partindo dos 65% medidos hoje e somando acesso por acesso. A aritmética é conservadora —
-      "destravar um check" não é o mesmo que "decidi-lo": no degrau do PDF aplicamos fator de decisão de ~0,7
-      (nem todo PDF anexado é legível/completo), e o bloco documental já conta no denominador de hoje.
-      Nos degraus de integração, os checks saem da revisão humana e entram no universo verificável.
+      Partindo dos <strong>47,5% medidos hoje</strong> e somando acesso por acesso. O eixo é a cobertura sobre o
+      universo inteiro (decididos ÷ 12.432) — cada acesso tira checks da revisão humana e os converte em decisão,
+      elevando o teto de capacidade e a cobertura junto. A aritmética é conservadora: "destravar um check" não é o
+      mesmo que "decidi-lo" — os números de "destrava" são estimativas a validar, não medições.
     </p>
 
     <div class="table-wrap">
@@ -459,55 +486,55 @@
             <th>Degrau (acesso liberado)</th>
             <th class="num">Destrava</th>
             <th class="num">Decididos</th>
-            <th class="num">Verificáveis</th>
-            <th>Cobertura acumulada</th>
+            <th class="num">Universo</th>
+            <th>Cobertura (÷ universo)</th>
             <th>Factibilidade</th>
           </tr>
         </thead>
         <tbody>
           <tr class="baseline">
             <td class="acc">Hoje — POC read-only</td>
-            <td class="num">—</td><td class="num">5.900</td><td class="num">9.044</td>
-            <td><span class="minibar" style="width:78px"></span><strong>65%</strong></td>
+            <td class="num">—</td><td class="num">5.900</td><td class="num">12.432</td>
+            <td><span class="minibar" style="width:57px"></span><strong>47,5%</strong></td>
             <td><span class="pill-tag now">no ar</span></td>
           </tr>
           <tr>
             <td>+ Porte (definição Gilson)</td>
-            <td class="num">243</td><td class="num">6.143</td><td class="num">9.287</td>
-            <td><span class="minibar" style="width:79px"></span><strong>66%</strong></td>
+            <td class="num">243</td><td class="num">6.143</td><td class="num">12.432</td>
+            <td><span class="minibar" style="width:59px"></span><strong>49,4%</strong></td>
             <td><span class="pill-tag gilson">decisão Gilson</span></td>
           </tr>
           <tr>
             <td>+ PDF da proposta anexado</td>
-            <td class="num">2.894</td><td class="num">8.169</td><td class="num">9.287</td>
-            <td><span class="minibar" style="width:106px"></span><strong>88%</strong></td>
+            <td class="num">2.894</td><td class="num">9.037</td><td class="num">12.432</td>
+            <td><span class="minibar" style="width:87px"></span><strong>72,7%</strong></td>
             <td><span class="pill-tag gilson">decisão Gilson</span></td>
           </tr>
           <tr>
             <td>+ E-mail / HubSpot</td>
-            <td class="num">891</td><td class="num">9.060</td><td class="num">10.178</td>
-            <td><span class="minibar" style="width:107px"></span><strong>89%</strong></td>
+            <td class="num">891</td><td class="num">9.928</td><td class="num">12.432</td>
+            <td><span class="minibar" style="width:96px"></span><strong>79,9%</strong></td>
             <td><span class="pill-tag integ">integração</span></td>
           </tr>
           <tr>
             <td>+ ERP TOTVS</td>
-            <td class="num">665</td><td class="num">9.725</td><td class="num">10.843</td>
-            <td><span class="minibar" style="width:108px"></span><strong>90%</strong></td>
+            <td class="num">665</td><td class="num">10.593</td><td class="num">12.432</td>
+            <td><span class="minibar" style="width:102px"></span><strong>85,2%</strong></td>
             <td><span class="pill-tag integ">integração</span></td>
           </tr>
           <tr>
             <td>+ Demais sistemas (Sense Data, FE, TOTVS, atividades)</td>
-            <td class="num">1.159</td><td class="num">10.884</td><td class="num">12.002</td>
-            <td><span class="minibar" style="width:109px"></span><strong>91%</strong></td>
+            <td class="num">1.159</td><td class="num">11.752</td><td class="num">12.432</td>
+            <td><span class="minibar" style="width:113px"></span><strong>94,5%</strong></td>
             <td><span class="pill-tag integ">integração</span></td>
           </tr>
         </tbody>
       </table>
     </div>
     <p class="onepager-note">
-      Teto realista: com todos os acessos + saneamento, a POC decidiria <strong>~91%</strong> dos checks verificáveis.
-      Os ~9% restantes são genuinamente humanos (julgamento de conformidade, exceções comerciais, GN1/GN2) —
-      não elimináveis por acesso, por desenho. Os fatores de decisão por degrau são premissas conservadoras, a validar.
+      Teto realista: com todos os acessos + saneamento, a POC decidiria <strong>~94,5%</strong> do universo de checks.
+      Os ~5,5% restantes são genuinamente humanos (julgamento de conformidade, exceções comerciais, GN1/GN2) —
+      não elimináveis por acesso, por desenho. Os volumes de "destrava" por degrau são estimativas conservadoras, a validar.
     </p>
   </div>
 </section>
@@ -526,13 +553,13 @@
       <div class="scn">
         <div class="tag">Hoje · POC read-only</div>
         <div class="hh acc">~57<small>%</small></div>
-        <div class="desc">do tempo de cross-check por oportunidade poupado. O humano revisa só o que sobra dos 65% decididos, em vez de conferir 39 itens do zero.</div>
+        <div class="desc">do tempo de cross-check por oportunidade poupado. O humano revisa só o que sobra dos 47,5% já decididos hoje, em vez de conferir 39 itens do zero.</div>
         <div class="metric">≈ <b>6,8 min</b> poupados/opp · <b>~55 h/mês</b> no volume atual</div>
       </div>
       <div class="scn feature">
-        <div class="tag">+ Acessos externos · ~91% cobertura</div>
+        <div class="tag">+ Acessos externos · ~94,5% cobertura</div>
         <div class="hh acc">~90<small>%</small></div>
-        <div class="desc">com PDF, saneamento e integrações, o humano revisa só os ~9% genuinamente ambíguos. O cross-check vira uma confirmação rápida.</div>
+        <div class="desc">com PDF, saneamento e integrações, o humano revisa só os ~5,5% genuinamente ambíguos. O cross-check vira uma confirmação rápida.</div>
         <div class="metric">≈ <b>10,8 min</b> poupados/opp · <b>~87 h/mês</b></div>
       </div>
       <div class="scn">
