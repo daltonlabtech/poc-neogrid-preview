@@ -105,6 +105,13 @@
   }
   /* Capa e CTA (fundos especiais): marca um pouco maior e mais presente. */
   .dl-logo.hero{ top:56px; right:120px; width:74px; height:74px; opacity:.78; }
+  /* Carimbo de atualizacao dos dados: rodape discreto nos slides com numeros. */
+  section[data-stamp]::after{
+    content:attr(data-stamp);
+    position:absolute; left:56px; bottom:18px; text-align:left;
+    font-family:'IBM Plex Mono',monospace; font-size:13px; letter-spacing:0.04em;
+    color:var(--ink-faint); opacity:.5; pointer-events:none; z-index:5;
+  }
 </style>
 </head>
 <body>
@@ -124,7 +131,7 @@
     </div>
   </section>
 
-  <section data-label="Contexto" data-speaker-notes="O problema nao e falta de processo, e volume sobre uma pessoa. Demanda ~484/mes contra capacidade ~144/mes, chamados parados em media 709 dias." style="background:var(--bg); padding:84px 110px; display:flex; flex-direction:column; justify-content:center; color:var(--ink); font-family:'IBM Plex Sans',sans-serif;">
+  <section data-stamp="Dados atualizados até 16/06/2026" data-label="Contexto" data-speaker-notes="O problema nao e falta de processo, e volume sobre uma pessoa. Demanda ~484/mes contra capacidade ~144/mes, chamados parados em media 709 dias." style="background:var(--bg); padding:84px 110px; display:flex; flex-direction:column; justify-content:center; color:var(--ink); font-family:'IBM Plex Sans',sans-serif;">
     <span class="dl-logo" aria-hidden="true"></span>
     <div class="m-up" style="font-family:'IBM Plex Mono',monospace; font-size:24px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:var(--accent); margin-bottom:24px; display:flex; align-items:center; gap:16px;"><span class="m-wipe" style="width:42px; height:2px; background:var(--accent); display:inline-block;"></span><span>Contexto &amp; objetivo</span></div>
     <h2 class="m-up" style="animation-delay:.06s; font-family:Fraunces,serif; font-size:62px; line-height:1.08; font-weight:600; letter-spacing:-0.015em; color:var(--ink); margin-bottom:26px; max-width:24ch;"><span>Não é falta de processo. </span><span style="color:var(--ink-faint); font-style:italic; font-weight:400;">É volume sobre uma pessoa só.</span></h2>
@@ -148,7 +155,7 @@
     </div>
   </section>
 
-  <section data-label="Resultados · base" data-speaker-notes="A base: 1.400 ganhas no CRM, mas ~79% eram lixo de teste. As 296 validas foram todas processadas, ~1 seg cada, 100% com evidencia." style="background:var(--bg); padding:80px 110px; display:flex; flex-direction:column; justify-content:center; color:var(--ink); font-family:'IBM Plex Sans',sans-serif;">
+  <section data-stamp="Dados atualizados até 16/06/2026" data-label="Resultados · base" data-speaker-notes="A base: 1.400 ganhas no CRM, mas ~79% eram lixo de teste. As 296 validas foram todas processadas, ~1 seg cada, 100% com evidencia." style="background:var(--bg); padding:80px 110px; display:flex; flex-direction:column; justify-content:center; color:var(--ink); font-family:'IBM Plex Sans',sans-serif;">
     <span class="dl-logo" aria-hidden="true"></span>
     <div class="m-up" style="font-family:'IBM Plex Mono',monospace; font-size:24px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:var(--accent); margin-bottom:22px; display:flex; align-items:center; gap:16px;"><span class="m-wipe" style="width:42px; height:2px; background:var(--accent); display:inline-block;"></span><span>Resultados</span></div>
     <h2 class="m-up" style="animation-delay:.06s; font-family:Fraunces,serif; font-size:56px; line-height:1.08; font-weight:600; letter-spacing:-0.015em; color:var(--ink); margin-bottom:18px; max-width:28ch;">O que o agente conseguiu, sobre 296 oportunidades reais.</h2>
@@ -166,7 +173,7 @@
     </div>
   </section>
 
-  <section data-label="Resultados · cobertura" data-speaker-notes="Tres camadas: capacidade 72,7% (teto hoje), aproveitamento 65,2%, cobertura 47,5% ponta a ponta. Vereditos: 157 devolvidos, 139 reprovados, 0 aprovados — esperado, 98,6% das opps tem campo vazio." style="background:var(--bg); padding:58px 110px; display:flex; flex-direction:column; justify-content:center; color:var(--ink); font-family:'IBM Plex Sans',sans-serif;">
+  <section data-stamp="Dados atualizados até 16/06/2026" data-label="Resultados · cobertura" data-speaker-notes="Tres camadas: capacidade 72,7% (teto hoje), aproveitamento 65,2%, cobertura 47,5% ponta a ponta. Vereditos: 157 devolvidos, 139 reprovados, 0 aprovados — esperado, 98,6% das opps tem campo vazio." style="background:var(--bg); padding:58px 110px; display:flex; flex-direction:column; justify-content:center; color:var(--ink); font-family:'IBM Plex Sans',sans-serif;">
     <span class="dl-logo" aria-hidden="true"></span>
     <div class="m-up" style="font-family:'IBM Plex Mono',monospace; font-size:24px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:var(--accent); margin-bottom:20px; display:flex; align-items:center; gap:16px;"><span class="m-wipe" style="width:42px; height:2px; background:var(--accent); display:inline-block;"></span><span>Resultados · cobertura</span></div>
     <h2 class="m-up" style="animation-delay:.06s; font-family:Fraunces,serif; font-size:50px; line-height:1.1; font-weight:600; letter-spacing:-0.015em; color:var(--ink); margin-bottom:30px; max-width:30ch;">Capacidade, aproveitamento, cobertura — e o que ainda é humano.</h2>
@@ -186,7 +193,7 @@
     </div>
   </section>
 
-  <section data-label="Resultados · leitura" data-speaker-notes="Dois pontos para ler a cobertura. 1) 72,7% e o teto de HOJE (read-only); com acessos sobe a ~87,7%. 2) Sao 42 verificacoes = 39 checks oficiais + 3 sentinelas (#101 porte, #102 SETUP, #103 Nivel de Atendimento) que desdobram regras ja escritas." style="background:var(--paper); padding:80px 110px; display:flex; flex-direction:column; justify-content:center; color:var(--ink); font-family:'IBM Plex Sans',sans-serif;">
+  <section data-stamp="Dados atualizados até 16/06/2026" data-label="Resultados · leitura" data-speaker-notes="Dois pontos para ler a cobertura. 1) 72,7% e o teto de HOJE (read-only); com acessos sobe a ~87,7%. 2) Sao 42 verificacoes = 39 checks oficiais + 3 sentinelas (#101 porte, #102 SETUP, #103 Nivel de Atendimento) que desdobram regras ja escritas." style="background:var(--paper); padding:80px 110px; display:flex; flex-direction:column; justify-content:center; color:var(--ink); font-family:'IBM Plex Sans',sans-serif;">
     <span class="dl-logo" aria-hidden="true"></span>
     <div class="m-up" style="font-family:'IBM Plex Mono',monospace; font-size:24px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:var(--accent); margin-bottom:22px; display:flex; align-items:center; gap:16px;"><span class="m-wipe" style="width:42px; height:2px; background:var(--accent); display:inline-block;"></span><span>Resultados · como ler os números</span></div>
     <h2 class="m-up" style="animation-delay:.06s; font-family:Fraunces,serif; font-size:54px; line-height:1.1; font-weight:600; letter-spacing:-0.015em; color:var(--ink); margin-bottom:40px; max-width:30ch;">Dois pontos para ler a cobertura sem se enganar.</h2>
@@ -196,7 +203,7 @@
     </div>
   </section>
 
-  <section data-label="O que destrava" data-speaker-notes="Os 52,5% que faltam nao sao erro — sao honestidade: dado ausente ou em sistema externo. Porte + PDF nao dependem de integracao, so de decisao de processo, e elevam capacidade para ~81% e cobertura para ~52,8%." style="background:var(--paper); padding:84px 110px; display:flex; flex-direction:column; justify-content:center; color:var(--ink); font-family:'IBM Plex Sans',sans-serif;">
+  <section data-stamp="Dados atualizados até 16/06/2026" data-label="O que destrava" data-speaker-notes="Os 52,5% que faltam nao sao erro — sao honestidade: dado ausente ou em sistema externo. Porte + PDF nao dependem de integracao, so de decisao de processo, e elevam capacidade para ~81% e cobertura para ~52,8%." style="background:var(--paper); padding:84px 110px; display:flex; flex-direction:column; justify-content:center; color:var(--ink); font-family:'IBM Plex Sans',sans-serif;">
     <span class="dl-logo" aria-hidden="true"></span>
     <div class="m-up" style="font-family:'IBM Plex Mono',monospace; font-size:24px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:var(--accent); margin-bottom:22px; display:flex; align-items:center; gap:16px;"><span class="m-wipe" style="width:42px; height:2px; background:var(--accent); display:inline-block;"></span><span>O que aumenta a cobertura</span></div>
     <h2 class="m-up" style="animation-delay:.06s; font-family:Fraunces,serif; font-size:54px; line-height:1.1; font-weight:600; letter-spacing:-0.015em; color:var(--ink); margin-bottom:22px; max-width:28ch;">Onde os outros 52,5% estão presos — e o que os destrava.</h2>
@@ -210,7 +217,7 @@
     <div class="m-up" style="animation-delay:.46s; background:var(--accent-soft); border:1px solid var(--border-strong); border-radius:11px; padding:26px 30px; max-width:1320px;"><p style="font-size:26px; line-height:1.45; color:var(--ink-soft);"><strong style="color:var(--accent); font-weight:600;">Os dois primeiros importam para a POC.</strong> PDF + porte não dependem de integração nova — dependem de uma decisão de processo. Juntos elevam a capacidade de <strong style="color:var(--ink); font-weight:600;">72,7% para ~81,0%</strong> e a cobertura de <strong style="color:var(--ink); font-weight:600;">47,5% para ~52,8%</strong> (estimativa a validar). <strong style="color:var(--ink); font-weight:600;">O PDF é o maior salto isolado</strong> — travado por falta de anexo, não por incapacidade da IA.</p></div>
   </section>
 
-  <section data-label="Projeção" data-speaker-notes="A escada de cobertura, degrau por degrau. Cada acesso eleva os verificaveis; a cobertura aplica o aproveitamento de 65,2%. Teto realista ~87,7% capacidade e ~57,2% cobertura; ~12,3% sao genuinamente humanos." style="background:var(--bg); padding:80px 110px; display:flex; flex-direction:column; justify-content:center; color:var(--ink); font-family:'IBM Plex Sans',sans-serif;">
+  <section data-stamp="Dados atualizados até 16/06/2026" data-label="Projeção" data-speaker-notes="A escada de cobertura, degrau por degrau. Cada acesso eleva os verificaveis; a cobertura aplica o aproveitamento de 65,2%. Teto realista ~87,7% capacidade e ~57,2% cobertura; ~12,3% sao genuinamente humanos." style="background:var(--bg); padding:80px 110px; display:flex; flex-direction:column; justify-content:center; color:var(--ink); font-family:'IBM Plex Sans',sans-serif;">
     <span class="dl-logo" aria-hidden="true"></span>
     <div class="m-up" style="font-family:'IBM Plex Mono',monospace; font-size:24px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:var(--accent); margin-bottom:22px; display:flex; align-items:center; gap:16px;"><span class="m-wipe" style="width:42px; height:2px; background:var(--accent); display:inline-block;"></span><span>Projeção</span></div>
     <h2 class="m-up" style="animation-delay:.06s; font-family:Fraunces,serif; font-size:54px; line-height:1.1; font-weight:600; letter-spacing:-0.015em; color:var(--ink); margin-bottom:20px; max-width:30ch;">A escada: cobertura à medida que os acessos se abrem.</h2>
@@ -236,7 +243,7 @@
     <p class="m-up" style="animation-delay:.3s; font-size:24px; font-style:italic; color:var(--ink-faint); margin-top:22px; max-width:1300px;">Teto realista: com todos os acessos + saneamento, ~87,7% de capacidade e ~57,2% de cobertura projetada. Os ~12,3% restantes são genuinamente humanos (julgamento de conformidade, exceções comerciais, GN1/GN2) — não elimináveis por acesso, por desenho.</p>
   </section>
 
-  <section data-label="Tempo poupado" data-speaker-notes="A analista vira gestora de excecao. Hoje ~47% do cross-check poupado; com acessos ~57%; com permissao de escrita muda a natureza — o agente resolve, nao so aponta." style="background:var(--paper); padding:84px 110px; display:flex; flex-direction:column; justify-content:center; color:var(--ink); font-family:'IBM Plex Sans',sans-serif;">
+  <section data-stamp="Dados atualizados até 16/06/2026" data-label="Tempo poupado" data-speaker-notes="A analista vira gestora de excecao. Hoje ~47% do cross-check poupado; com acessos ~57%; com permissao de escrita muda a natureza — o agente resolve, nao so aponta." style="background:var(--paper); padding:84px 110px; display:flex; flex-direction:column; justify-content:center; color:var(--ink); font-family:'IBM Plex Sans',sans-serif;">
     <span class="dl-logo" aria-hidden="true"></span>
     <div class="m-up" style="font-family:'IBM Plex Mono',monospace; font-size:24px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:var(--accent); margin-bottom:22px; display:flex; align-items:center; gap:16px;"><span class="m-wipe" style="width:42px; height:2px; background:var(--accent); display:inline-block;"></span><span>Tempo poupado</span></div>
     <h2 class="m-up" style="animation-delay:.06s; font-family:Fraunces,serif; font-size:56px; line-height:1.1; font-weight:600; letter-spacing:-0.015em; color:var(--ink); margin-bottom:22px; max-width:28ch;">De conferente de linha a gestora de exceção.</h2>
@@ -249,7 +256,7 @@
     <p class="m-up" style="animation-delay:.42s; font-size:24px; font-style:italic; color:var(--ink-faint); margin-top:30px; max-width:1500px;">Premissas: ~15 min de cross-check manual por opp e ~484 opps/mês — a validar com a Schaiane. A poupança ∝ cobertura é teto otimista (o agente decide primeiro os checks fáceis/determinísticos). Os fatores de resolução com escrita são conservadores — medir a causa-raiz das 157 devoluções antes de cravar o 35%.</p>
   </section>
 
-  <section data-label="Exemplos" data-speaker-notes="Tres casos que mostram a logica do agente, sempre com a evidencia ao lado: aprovado (elos fecham), reprovado (sem item, elo 4 quebra), revisao humana (assinatura nao detectavel)." style="background:var(--bg); padding:84px 110px; display:flex; flex-direction:column; justify-content:center; color:var(--ink); font-family:'IBM Plex Sans',sans-serif;">
+  <section data-stamp="Dados atualizados até 16/06/2026" data-label="Exemplos" data-speaker-notes="Tres casos que mostram a logica do agente, sempre com a evidencia ao lado: aprovado (elos fecham), reprovado (sem item, elo 4 quebra), revisao humana (assinatura nao detectavel)." style="background:var(--bg); padding:84px 110px; display:flex; flex-direction:column; justify-content:center; color:var(--ink); font-family:'IBM Plex Sans',sans-serif;">
     <span class="dl-logo" aria-hidden="true"></span>
     <div class="m-up" style="font-family:'IBM Plex Mono',monospace; font-size:24px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:var(--accent); margin-bottom:22px; display:flex; align-items:center; gap:16px;"><span class="m-wipe" style="width:42px; height:2px; background:var(--accent); display:inline-block;"></span><span>Como o agente decide</span></div>
     <h2 class="m-up" style="animation-delay:.06s; font-family:Fraunces,serif; font-size:56px; line-height:1.1; font-weight:600; letter-spacing:-0.015em; color:var(--ink); margin-bottom:44px; max-width:28ch;">Três casos que mostram a lógica, com a evidência ao lado.</h2>
@@ -260,7 +267,7 @@
     </div>
   </section>
 
-  <section data-label="Limitações" data-speaker-notes="Honestidade: o agente so checa o que o CRM tem. Proposta raramente anexada (6,1%), porte quase sempre vazio, gabarito parcial, sistemas externos de fora. Nomear os limites e parte da entrega." style="background:var(--paper); padding:84px 110px; display:flex; flex-direction:column; justify-content:center; color:var(--ink); font-family:'IBM Plex Sans',sans-serif;">
+  <section data-stamp="Dados atualizados até 16/06/2026" data-label="Limitações" data-speaker-notes="Honestidade: o agente so checa o que o CRM tem. Proposta raramente anexada (6,1%), porte quase sempre vazio, gabarito parcial, sistemas externos de fora. Nomear os limites e parte da entrega." style="background:var(--paper); padding:84px 110px; display:flex; flex-direction:column; justify-content:center; color:var(--ink); font-family:'IBM Plex Sans',sans-serif;">
     <span class="dl-logo" aria-hidden="true"></span>
     <div class="m-up" style="font-family:'IBM Plex Mono',monospace; font-size:24px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:var(--accent); margin-bottom:22px; display:flex; align-items:center; gap:16px;"><span class="m-wipe" style="width:42px; height:2px; background:var(--accent); display:inline-block;"></span><span>Honestidade</span></div>
     <h2 class="m-up" style="animation-delay:.06s; font-family:Fraunces,serif; font-size:58px; line-height:1.1; font-weight:600; letter-spacing:-0.015em; color:var(--ink); margin-bottom:18px;"><span>O que esta POC </span><span style="font-style:italic; color:var(--ink-faint); font-weight:400;">não</span><span> resolve.</span></h2>
